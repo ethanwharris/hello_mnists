@@ -5,6 +5,7 @@ from torchvision.datasets import CIFAR10
 from torchvision import transforms
 from torch.utils.data import DataLoader
 import pytorch_lightning as pl
+from pytorch_lightning import Trainer
 from torch.utils.data import random_split
 from pytorch_lightning.metrics.functional import accuracy
 
@@ -54,5 +55,5 @@ if __name__ == '__main__':
     model = LitModel(lr=args.lr)
 
     # most basic trainer, uses good defaults (auto-tensorboard, checkpoints, logs, and more)
-    trainer = pl.Trainer(gpus=args.gpus, max_epochs=args.max_epochs)
+    trainer = Trainer(gpus=args.gpus, max_epochs=args.max_epochs)
     trainer.fit(model, train_loader)
